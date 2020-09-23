@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { push } from 'connected-react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { DatePicker, Button, Pagination, Row, Col} from 'antd';
-import './home.css'
-import Header from '../../components/Header'
-import InputFiled from '../../components/Input'
-import Cards from '../../components/Cards';
-import { getCases, getUsers } from './actions';
-import DatePickerComponent from '../../components/DatePickerComponent';
-import { getUnixTime, debounce } from '../../utils/common';
-import ErrorComponent from '../../components/ErrorComponent';
-import TableDetail from '../../components/TableDetail';
+import { Row} from 'antd';
 import { Link } from 'react-router-dom';
+import './home.css'
+import { getUsers } from './actions';
+import TableDetail from '../../components/TableDetail';
+
 const Home = props => {
   const [usersData, setUserData] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
@@ -45,6 +39,7 @@ const Home = props => {
     },
     {
       title: 'Company Name',
+      key:'company',
       dataIndex: 'company',
       render: (company) => {
         return (
@@ -57,6 +52,7 @@ const Home = props => {
     },
     {
       title: 'Blog post',
+      key:'id',
       dataIndex: 'id',
       render: (id, data) => {
         const url = `/posts?userId=${id}`;
@@ -71,9 +67,6 @@ const Home = props => {
   ];
   return (
     <div className="home">
-      <Row justify="center">
-        <Header/>
-      </Row>
       <Row justify="center">
           <TableDetail 
             columns={tableColumns}
