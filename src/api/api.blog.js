@@ -45,7 +45,7 @@ export const getCommentsByPost = async params => {
 
 export const deletePostById = async params => {
   //todo
-  // const url = 'https://jsonplaceholder.typicode.com/comments/';
+  const url = 'https://jsonplaceholder.typicode.com/comments/';
   const response = await Axios.get(url, {
     params: {
       postId: params.postId,
