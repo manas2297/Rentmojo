@@ -6,47 +6,47 @@ import { List, Avatar } from 'antd';
 import { Row } from 'antd';
 import './post.css'
 import { Link } from 'react-router-dom';
+
 const Posts = (props) => {
-  console.log(props);
-  const { isPostsFetched, posts, isError, location } = props;
+  const { isPostsFetched, posts, location } = props;
   const [postsList, setPostsList] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setPostsList([]);
-    setLoading(true)
-    const params = {
-      userId: location.search.split('=')[1],
-      _page: 1,
-      _limit: 10,
+    setLoading(true);
+    const userId = location.search.split('=')[1];
+
+    if (!userId) {
+      props.history.push('/');
+    } else {
+      const params = {
+        userId,
+        _page: 1,
+        _limit: 10,
+      }
+      console.log(params);
+      props.getPostsList(params);
+
     }
-    console.log(params);
-    props.getPostsList(params);
     return () => {
       console.log("unmount")
       setPostsList([]);
       setLoading(false);
     }
-  },[]);
+  }, []);
+
   useEffect(() => {
-    if(isPostsFetched) {
+    if (isPostsFetched) {
       setLoading(false);
       setPostsList(posts);
     }
   }, [isPostsFetched]);
-  console.log(postsList);
-  // const List = ({post, key}) => {
-  //   return (
-  //     <div>
-  //       <h1>
-  //         {post.title}
-  //       </h1>
-  //     </div>
-  //   )
-  // }
-  return(
+
+  return (
     <div className="posts">
       {loading ? 'Loading.....' :
-        <Row>     
+        <Row>
           <List
             className="posts__list"
             pagination={{
@@ -61,12 +61,12 @@ const Posts = (props) => {
                   <Link to={url}>Read More</Link>
                 </div>
               )
-              
+
             }}
           />
         </Row>
       }
-      
+
     </div>
   )
 };
@@ -83,6 +83,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   )
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps
 )(Posts);
