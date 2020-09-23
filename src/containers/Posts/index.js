@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getPostsList } from './actions';
+import { List, Avatar } from 'antd';
+import { Row } from 'antd';
+import './post.css'
+import { Link } from 'react-router-dom';
 const Posts = (props) => {
   console.log(props);
   const { isPostsFetched, posts, isError, location } = props;
@@ -30,21 +34,37 @@ const Posts = (props) => {
     }
   }, [isPostsFetched]);
   console.log(postsList);
-  const List = ({post, key}) => {
-    return (
-      <div>
-        <h1>
-          {post.title}
-        </h1>
-      </div>
-    )
-  }
+  // const List = ({post, key}) => {
+  //   return (
+  //     <div>
+  //       <h1>
+  //         {post.title}
+  //       </h1>
+  //     </div>
+  //   )
+  // }
   return(
-    <div>
-      {loading ? 'Loading.....' : 
-        postsList.map((post, index) => 
-          <List post={post} key={index}/>
-        )
+    <div className="posts">
+      {loading ? 'Loading.....' :
+        <Row>     
+          <List
+            className="posts__list"
+            pagination={{
+              pageSize: 8
+            }}
+            dataSource={postsList}
+            renderItem={post => {
+              const url = `/posts/${post.id}`;
+              return (
+                <div className="list__item">
+                  <h1>{post.title}</h1>
+                  <Link to={url}>Read More</Link>
+                </div>
+              )
+              
+            }}
+          />
+        </Row>
       }
       
     </div>
