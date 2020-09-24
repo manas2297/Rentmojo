@@ -23,7 +23,6 @@ export function getComments(params){
 };
 
 export function deletePost(params) {
-  console.log("here")
   return {
     type: DELETE_POST_START,
     payload: params,

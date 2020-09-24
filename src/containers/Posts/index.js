@@ -25,12 +25,9 @@ const Posts = (props) => {
         _page: 1,
         _limit: 10,
       }
-      console.log(params);
       props.getPostsList(params);
-
     }
     return () => {
-      console.log("unmount")
       setPostsList([]);
       setLoading(false);
     }

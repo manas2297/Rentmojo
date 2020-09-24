@@ -20,7 +20,6 @@ const PostDetails = (props) => {
   const [loading, setLoading] = useState(false);
   const [commentsList, setCommentsList] = useState(comments);
   const { id: postId } = useParams();
-  console.log(comments, commentsList)
   useEffect(() => {
     setLoading(true);
     getPostDetails({ postId });
@@ -29,7 +28,6 @@ const PostDetails = (props) => {
       setCommentsList([]);
     }
   }, []);
-console.log(props);
   useEffect(()=>{
     if(isPostDeleted) {
       props.history.push(`/posts?userId=${postDetails.userId}`);
@@ -102,6 +100,7 @@ console.log(props);
     </div>
   );
 };
+
 const mapStateToProps = state => ({
   isPostDeleted: state.postDetailsState.isPostDeleted,
   postDetails: state.postDetailsState.postDetails,

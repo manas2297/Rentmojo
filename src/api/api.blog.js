@@ -13,7 +13,6 @@ export const getUsersAPI = async params => {
 
 export const getPostByIdAPI = async params => {
   const url = 'https://jsonplaceholder.typicode.com/posts/';
-  console.log(params);
   const response = await Axios.get(url, {
     params: {
       userId: params.userId,
