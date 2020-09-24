@@ -1,8 +1,13 @@
 ## Description
-Implemented Redux saga for state management.
-Axios for api calls
-Antd for Components
+Implemented Redux saga for state management.  
+Axios for api calls. \
+Antd for Components. \
 
+## Install Dependencies
+```bash
+npm install
+
+```
 ## Run
 
 ```bash
