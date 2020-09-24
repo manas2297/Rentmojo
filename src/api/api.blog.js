@@ -28,6 +28,16 @@ export const getPostByIdAPI = async params => {
   const error = new Error('Something went wrong');
   throw error
 }
+export const getPostDetailsAPI = async params => {
+  const url = `https://jsonplaceholder.typicode.com/posts/${params.postId}`;
+  const response = await Axios.get(url);
+  const isSuccess = response.status >= 200 && response.status < 300;
+  if (isSuccess) {
+    return response.data;
+  }
+  const error = new Error('Something went wrong');
+  throw error
+}
 
 export const getCommentsByPost = async params => {
   const url = 'https://jsonplaceholder.typicode.com/comments/';

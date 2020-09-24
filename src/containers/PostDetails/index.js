@@ -1,8 +1,14 @@
 import React from 'react';
+import { useParams } from 'react-router';
 
-const PostDetails = () => {
+const PostDetails = (props) => {
+  console.log(props.location)
+  let x = useParams();
+  console.log(x);
   return (
-    <h1>Hello</h1>
+    <div className="post__cards">
+
+    </div>
   );
 };
 export default PostDetails;
