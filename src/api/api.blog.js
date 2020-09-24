@@ -56,12 +56,8 @@ export const getCommentsByPost = async params => {
 
 export const deletePostById = async params => {
   //todo
-  const url = 'https://jsonplaceholder.typicode.com/comments/';
-  const response = await Axios.get(url, {
-    params: {
-      postId: params.postId,
-    },
-  });
+  const url = `https://jsonplaceholder.typicode.com/posts/${params.postId}`;
+  const response = await Axios.delete(url);
   const isSuccess = response.status >= 200 && response.status < 300;
   if (isSuccess) {
     return response.data;
