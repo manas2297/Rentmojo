@@ -7,5 +7,26 @@
   border-radius: 5px;
 }
 .post__contents{
-  
+
+}
+.post__footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.post__footer .comments {
+  color: rgb(255, 255, 255);
+  background-color: rgb(28, 174, 231);
+  border: none;
+  padding: 0.8em 1em;
+  font-weight: 500;
+  cursor: pointer;
+}
+.post__footer .delete {
+  color: wheat;
+  background-color: rgb(255, 51, 51);
+  border: none;
+  padding: 0.8em 1em;
+  font-weight: 500;
+  cursor: pointer;
 }

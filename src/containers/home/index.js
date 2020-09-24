@@ -68,6 +68,11 @@ const Home = props => {
   return (
     <div className="home">
       <Row justify="center">
+        <h1>
+        Users List
+        </h1>
+      </Row>
+      <Row justify="center">
           <TableDetail 
             columns={tableColumns}
             dataSource={usersData}

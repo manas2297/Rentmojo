@@ -15,7 +15,6 @@ export default (state = initialState, action) => {
         isError: false,
       };
     case GET_USERS_SUCCESS:
-    console.log(action.payload);
     return {
       ...state,
       usersData: action.payload,

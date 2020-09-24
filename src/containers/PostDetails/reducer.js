@@ -6,15 +6,18 @@ const initState = {
   comments: [],
   isError: false,
   isCommentsFetched: false,
+  isPostDeleted: false,
 }
 
 export default (state = initState, action) => {
   switch (action.type) {
+    case 'RESET': 
+      return {
+        ...initState
+      };
     case GET_POST_DETAILS_START:
       return {
-        ...state,
-        isPostDetailsFetched: false,
-        postDetails: '',
+        ...initState
       };
     case GET_POST_DETAILS_SUCCESS:
       return {

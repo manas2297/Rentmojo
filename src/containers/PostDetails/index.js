@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { getPostDetails, getComments, deletePost } from './actions';
+import { getPostDetails, getComments, deletePost, resetList } from './actions';
 import { connect } from 'react-redux';
 import './postCards.css';
 import { Comment, Tooltip, List } from 'antd';
@@ -18,14 +18,18 @@ const PostDetails = (props) => {
     isPostDeleted,
   } = props;
   const [loading, setLoading] = useState(false);
-  const [commentsList, setCommentsList] = useState([]);
+  const [commentsList, setCommentsList] = useState(comments);
   const { id: postId } = useParams();
-
+  console.log(comments, commentsList)
   useEffect(() => {
     setLoading(true);
     getPostDetails({ postId });
+    return () => {
+      props.resetList();
+      setCommentsList([]);
+    }
   }, []);
-
+console.log(props);
   useEffect(()=>{
     if(isPostDeleted) {
       props.history.push(`/posts?userId=${postDetails.userId}`);
@@ -49,6 +53,8 @@ const PostDetails = (props) => {
   }
   const handleDelete = () => {
     deletePost({postId});
+    setLoading(true);
+    setCommentsList([]);
   }
   return (
     <div className="post__cards">
@@ -79,8 +85,19 @@ const PostDetails = (props) => {
       }
       </div>
       <div className="post__footer">
-        <button disabled={isCommentsFetched} onClick={handleCommentClick}>Comments</button>
-        <button onClick={handleDelete}>Delete Post</button>
+        <button
+          className="comments"
+          disabled={isCommentsFetched}
+          onClick={handleCommentClick}
+        >
+          Comments
+        </button>
+        <button
+          className="delete"
+          onClick={handleDelete}
+        >
+          Delete Post
+        </button>
       </div>
     </div>
   );
@@ -99,6 +116,7 @@ const mapDispatchToProps = dispatch =>
       getPostDetails,
       getComments,
       deletePost,
+      resetList,
     },
     dispatch
   )
