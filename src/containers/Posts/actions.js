@@ -6,3 +6,8 @@ export const getPostsList = (params) => {
     payload: params,
   };
 };
+export function resetList() {
+  return {
+    type: 'RESET',
+  };
+}

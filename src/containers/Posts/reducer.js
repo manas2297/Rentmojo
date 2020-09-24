@@ -8,6 +8,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'RESET': 
+    return {
+      ...initialState
+    };
     case GET_USER_POST_START:
       return {
         ...state,

@@ -10,7 +10,7 @@ import TableDetail from '../../components/TableDetail';
 const Home = props => {
   const [usersData, setUserData] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
-  const [pagination, setPagination] = useState({current: 1, pageSize: 4});
+  const [pagination, setPagination] = useState({current: 1, pageSize: 10});
   
   useEffect(() => {
     setTableLoading(true);

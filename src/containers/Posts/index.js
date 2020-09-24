@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getPostsList } from './actions';
+import { getPostsList, resetList } from './actions';
 import { List, Avatar } from 'antd';
 import { Row } from 'antd';
 import './post.css'
@@ -11,7 +11,6 @@ const Posts = (props) => {
   const { isPostsFetched, posts, location } = props;
   const [postsList, setPostsList] = useState([]);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     setPostsList([]);
     setLoading(true);
@@ -28,6 +27,7 @@ const Posts = (props) => {
       props.getPostsList(params);
     }
     return () => {
+      props.resetList();
       setPostsList([]);
       setLoading(false);
     }
@@ -76,6 +76,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       getPostsList,
+      resetList,
     },
     dispatch
   )
